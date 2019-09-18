@@ -123,4 +123,15 @@ void			count_raznica(t_allway *map);
 
 void poisk_vershin1(t_way **temp, t_v *node);
 
+void	raise_error(int t);
+int is_comment(const char *str);
+int is_command(const char *str);
+int	is_entirely_numeric(const char *str);
+int		read_int(char *str);
+int		is_room(const char *str);
+void	read_room(t_mapdata *mdata, char *str, int *cmd_type);
+int is_link(const char *str);
+void	read_link(t_mapdata *mdata, char *str);
+void print_mdata(t_mapdata *data);
+
 #endif

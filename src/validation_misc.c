@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation_misc.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blomo <blomo@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/11 12:46:35 by blomo             #+#    #+#             */
+/*   Updated: 2019/09/17 05:15:39 by blomo            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lemin.h"
 
 void	raise_error(int t)
@@ -19,12 +31,12 @@ void	raise_error(int t)
 	exit(1);
 }
 
-int is_comment(const char *str)
+int		is_comment(const char *str)
 {
 	return (str[0] == '#' && str[1] != '#');
 }
 
-int is_command(const char *str)
+int		is_command(const char *str)
 {
 	if (str[0] == '#' && str[1] == '#')
 	{
@@ -38,7 +50,7 @@ int is_command(const char *str)
 	return (0);
 }
 
-int	is_entirely_numeric(const char *str)
+int		is_entirely_numeric(const char *str)
 {
 	while (*str != 0)
 	{
@@ -69,7 +81,7 @@ int		read_int(char *str)
 	while (*str && ft_isdigit(*str))
 	{
 		if (res > 2147483647 / 10 || (res == 2147483647 / 10 &&
-									  (*str - '0') > treshold_dig))
+				(*str - '0') > treshold_dig))
 			return (1);
 		res = res * 10 + (*str - '0');
 		str++;

@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-void			one_of_map(t_allway **map, t_way *temp1)
+void		one_of_map(t_allway **map, t_way *temp1)
 {
 	if (!(*map = (t_allway*)malloc(sizeof(t_allway))))
 		return ;
@@ -24,36 +24,24 @@ void			one_of_map(t_allway **map, t_way *temp1)
 	(*map)->raznica = 0;
 }
 
-void			more_of_map(t_allway **map, t_way *temp1)
+void		more_of_map(t_allway **map, t_way *temp1)
 {
 	t_allway	*map1;
-	map1 = NULL;
 
-	if (!(map1 = (t_allway*)malloc(sizeof(t_allway))))
-		return ;
-	map1->go = NULL;
-	map1->next = NULL;
-	map1->prev = NULL;
-	map1->size = 0;
-	map1->raznica = 0;
-
+	map1 = (t_allway*)malloc(sizeof(t_allway));
+	ft_bzero(map1, sizeof(t_allway));
 	map1->go = temp1;
 	map1->next = *map;
-	map1->naposl = NULL;
-	map1->size = 0;
-	map1->raznica = 0;
-
 	(*map)->prev = map1;
 	*map = map1;
-	
 }
 
-t_allway		*create_map(t_v **hashtab, char *start, char *end, t_flag *fl)
+t_allway	*create_map(t_v **hashtab, char *start, char *end, t_flag *fl)
 {
 	t_allway	*map;
 	t_way		*temp;
 	t_way		*temp1;
-	
+
 	map = NULL;
 	temp1 = NULL;
 	fl->k = 1;
@@ -62,8 +50,6 @@ t_allway		*create_map(t_v **hashtab, char *start, char *end, t_flag *fl)
 		temp = ft_way(hashtab, start, end, fl);
 		if (fl->c)
 		{
-			// if (temp1 != NULL)
-			// 	del_map(&temp1);
 			temp1 = create_smallway(temp, end);
 			if (temp)
 				del_map(&temp);
@@ -85,24 +71,17 @@ t_allway		*create_map(t_v **hashtab, char *start, char *end, t_flag *fl)
 				more_of_map(&map, temp1);
 		}
 	}
-	// if (temp1 != NULL)
-	// 	del_map(&temp1);
 	return (map);
 }
 
-t_allway		*create_smal(t_v **hashtab, char *start, char *end, t_flag *fl)
+t_allway	*create_smal(t_v **hashtab, char *start, char *end, t_flag *fl)
 {
 	t_allway	*map;
 	t_way		*temp;
 	t_way		*temp1;
 
-	if (!(map = (t_allway*)malloc(sizeof(t_allway))))
-		return (NULL);
-	map->go = NULL;
-	map->next = NULL;
-	map->prev = NULL;
-	map->size = 0;
-	map->raznica = 0;
+	map = (t_allway*)malloc(sizeof(t_allway));
+	ft_bzero(map, sizeof(t_allway));
 	temp = ft_way(hashtab, start, end, fl);
 	temp1 = create_smallway(temp, end);
 	del_map(&temp);
@@ -114,7 +93,7 @@ t_allway		*create_smal(t_v **hashtab, char *start, char *end, t_flag *fl)
 	return (map);
 }
 
-void			podschet_reber(t_way *rebra, t_allway *map, t_flag *fl)
+void		podschet_reber(t_way *rebra, t_allway *map, t_flag *fl)
 {
 	t_way		*temp;
 	int			z;
@@ -139,19 +118,17 @@ void			podschet_reber(t_way *rebra, t_allway *map, t_flag *fl)
 	fl->c = 1;
 }
 
-void			ft_multyway(t_v **hashtab, char *start, char *end, t_flag *fl)
+void		ft_multyway(t_v **hashtab, char *start, char *end, t_flag *fl)
 {
 	t_allway	*map;
 	t_allway	*map2;
 	t_way		*rebra;
-	int			i;
-	
+
 	map2 = create_smal(hashtab, start, end, fl);
 	map = create_map(hashtab, start, end, fl);
 	rebra = poisk_vershin_s_indeksom_2(hashtab, fl);
 	podschet_reber(rebra, map, fl);
 	del_allmap(&map);
-	
 	map = create_map(hashtab, start, end, fl);
 	go_ants(map2, map, fl);
 	del_hash(hashtab, fl->hash_nbr);

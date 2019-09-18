@@ -72,15 +72,11 @@ t_way		*ft_way(t_v **hashtab, char *start, char *end, t_flag *fl)
 	t_v		*node;
 	t_way	*ochered;
 	t_way	*temp;
-	t_way	*way;
 
-	temp = NULL;
 	node = hashtab_lookup(hashtab, start, fl->hash_nbr);
 	create_ochered(&ochered);
 	ochered->sosed = node;
 	temp = ochered;
-	if(temp == NULL)
-		del_map(&ochered);
 	while (temp)
 	{
 		if (temp->status == 0)

@@ -12,12 +12,13 @@
 
 #include "lemin.h"
 
-void				dograf(t_mapdata *p)
+void	dograf(t_mapdata *p)
 {
 	t_flag			*fl;
 	t_v				*hashtab[p->nodes->len];
 	t_list_node		*cur;
 	int				i;
+
 	if (!(fl = (t_flag*)malloc(sizeof(t_flag))))
 		return ;
 	init_fl(fl);
@@ -34,12 +35,13 @@ void				dograf(t_mapdata *p)
 	doconnect(hashtab, fl, p);
 }
 
-void				copydominus(t_flag *fl, char *str)
+void	copydominus(t_flag *fl, char *str)
 {
 	int				i;
+
 	fl->c = 0;
 	i = 0;
-	printf("%s\n\n",str);
+	printf("%s\n\n", str);
 	while (str[i] != '-')
 	{
 		fl->temp[i] = str[i];
@@ -50,7 +52,7 @@ void				copydominus(t_flag *fl, char *str)
 	fl->c = i;
 }
 
-void				copyposleminus(t_flag *fl, char *str)
+void	copyposleminus(t_flag *fl, char *str)
 {
 	int				i;
 
@@ -64,7 +66,7 @@ void				copyposleminus(t_flag *fl, char *str)
 	fl->temp1[i] = '\0';
 }
 
-void				list_with_connect(t_v *node, t_v *node1)
+void	list_with_connect(t_v *node, t_v *node1)
 {
 	t_connection	*tt;
 	t_connection	*ptr;
@@ -90,24 +92,21 @@ void				list_with_connect(t_v *node, t_v *node1)
 	}
 }
 
-void				doconnect(t_v **hashtab, t_flag *fl, t_mapdata *p)
+void	doconnect(t_v **hashtab, t_flag *fl, t_mapdata *p)
 {
 	t_v				*node;
 	t_v				*node1;
 	t_list_node		*cur;
 
 	fl->p = -1;
-	fl->k = 0;
 	while (p->links->len)
 	{
+		fl->k = 0;
 		cur = ft_lsttake(p->links);
-		ft_bzero(fl->temp, 100);
-		ft_bzero(fl->temp1, 100);
 		copydominus(fl, cur->content);
 		copyposleminus(fl, cur->content);
 		node = hashtab_lookup(hashtab, fl->temp, fl->hash_nbr);
 		node1 = hashtab_lookup(hashtab, fl->temp1, fl->hash_nbr);
-	
 		if (node == NULL || node1 == NULL)
 		{
 			ft_putstr("no room in connect two V \n");
@@ -117,7 +116,6 @@ void				doconnect(t_v **hashtab, t_flag *fl, t_mapdata *p)
 		list_with_connect(node1, node);
 		free(cur->content);
 		free(cur);
-		fl->k = 0;
 	}
 	fl->ants = p->ants;
 	ft_multyway(hashtab, p->start, p->end, fl);

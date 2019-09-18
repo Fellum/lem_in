@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-void				a(t_way **ochered, t_connection *temp, t_v *node)
+void	a(t_way **ochered, t_connection *temp, t_v *node)
 {
 	t_way			*ochered1;
 	t_way			*ochered2;
@@ -31,7 +31,7 @@ void				a(t_way **ochered, t_connection *temp, t_v *node)
 	temp->bonds->is_node_one = 1;
 }
 
-void			sortirivka_way(t_allway *map)
+void	sortirivka_way(t_allway *map)
 {
 	t_allway	*temp_map;
 	t_allway	*temp;
@@ -62,7 +62,7 @@ void			sortirivka_way(t_allway *map)
 	}
 }
 
-void			count_way(t_allway *map)
+void	count_way(t_allway *map)
 {
 	t_way		*temp;
 	t_allway	*temp_map;
@@ -84,7 +84,7 @@ void			count_way(t_allway *map)
 	}
 }
 
-void			count_raznica(t_allway *map)
+void	count_raznica(t_allway *map)
 {
 	t_way		*temp;
 	t_allway	*temp_map;
@@ -102,7 +102,7 @@ void			count_raznica(t_allway *map)
 	map->naposl = temp_map;
 }
 
-void poisk_vershin1(t_way **temp, t_v *node)
+void	poisk_vershin1(t_way **temp, t_v *node)
 {
 	*temp = (t_way*)malloc(sizeof(t_way));
 	(*temp)->sosed = node;

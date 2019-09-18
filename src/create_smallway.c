@@ -33,8 +33,8 @@ t_way				*create_smallway(t_way *ochered, char *str)
 	t_way			*way;
 	t_way			*temp;
 	t_way			*tempway;
-	
-	if(ochered != NULL)
+
+	if (ochered != NULL)
 		create_ochered(&way);
 	while (ochered->next)
 	{

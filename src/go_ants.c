@@ -12,13 +12,12 @@
 
 #include "lemin.h"
 
-void			move_ants(t_allway *map)
+void	move_ants(t_allway *map)
 {
 	t_allway	*temp_map;
 	t_way		*temp;
 	int			c;
 
-	c = 0;
 	temp_map = map;
 	while (temp_map)
 	{
@@ -36,13 +35,13 @@ void			move_ants(t_allway *map)
 	}
 }
 
-int				how_much_way(t_allway *map, int ants)
+int		how_much_way(t_allway *map, int ants)
 {
 	int			i;
 	t_allway	*temp_map;
-	
+
 	temp_map = NULL;
-	if(map->naposl != NULL)
+	if (map->naposl != NULL)
 		temp_map = map->naposl;
 	i = 1;
 	while (ants >= 0 && temp_map && temp_map->prev)
@@ -56,11 +55,12 @@ int				how_much_way(t_allway *map, int ants)
 	return (i);
 }
 
-void			first_way(t_allway *map, t_flag *fl, int i)
+void	first_way(t_allway *map, t_flag *fl, int i)
 {
 	t_allway	*temp_map;
 	t_way		*temp;
-	if(map->naposl != NULL)
+
+	if (map->naposl != NULL)
 		temp_map = map->naposl;
 	while (i-- && temp_map && fl->ants)
 	{
@@ -73,7 +73,7 @@ void			first_way(t_allway *map, t_flag *fl, int i)
 	}
 }
 
-int				proverka_room(t_allway *map, t_flag *fl)
+int		proverka_room(t_allway *map, t_flag *fl)
 {
 	t_allway	*temp_map;
 	t_way		*temp;
@@ -93,11 +93,11 @@ int				proverka_room(t_allway *map, t_flag *fl)
 	return (0);
 }
 
-void  go_go(t_allway *map, t_flag *fl)
+void	go_go(t_allway *map, t_flag *fl)
 {
 	int			i;
 	int			c;
-	
+
 	while (fl->ants)
 	{
 		i = how_much_way(map, fl->ants);
@@ -116,12 +116,11 @@ void  go_go(t_allway *map, t_flag *fl)
 	}
 }
 
-
-void			go_ants(t_allway *map_oneway, t_allway *map, t_flag *fl)
+void	go_ants(t_allway *map_oneway, t_allway *map, t_flag *fl)
 {
 	int i;
 
-	if(map == NULL)
+	if (map == NULL)
 		return ;
 	count_way(map);
 	sortirivka_way(map);
@@ -132,7 +131,7 @@ void			go_ants(t_allway *map_oneway, t_allway *map, t_flag *fl)
 	i = how_much_way(map, fl->ants);
 	fl->p = 1;
 	fl->i = 0;
-	if(i == 1)
+	if (i == 1)
 		go_go(map_oneway, fl);
 	else
 		go_go(map, fl);

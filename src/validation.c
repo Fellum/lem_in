@@ -12,23 +12,12 @@
 
 #include "lemin.h"
 
-void	raise_error(int t);
-int is_comment(const char *str);
-int is_command(const char *str);
-int	is_entirely_numeric(const char *str);
-int		read_int(char *str);
-int		is_room(const char *str);
-void	read_room(t_mapdata *mdata, char *str, int *cmd_type);
-int is_link(const char *str);
-void	read_link(t_mapdata *mdata, char *str);
-void print_mdata(t_mapdata *data);
-int fd;
-
 void	get_ants_num(t_mapdata *mdata)
 {
 	char	*line;
 	int		res;
-	while (ft_get_next_line(fd, &line) == GNL_SUCCESS)
+
+	while (ft_get_next_line(STDIN_FILENO, &line) == GNL_SUCCESS)
 	{
 		if (is_comment(line))
 		{
@@ -49,9 +38,9 @@ void	get_ants_num(t_mapdata *mdata)
 void	get_nodes(t_mapdata *mdata)
 {
 	char	*line;
-	int 	cmd_type;
+	int		cmd_type;
 
-	while (ft_get_next_line(fd, &line) == GNL_SUCCESS)
+	while (ft_get_next_line(STDIN_FILENO, &line) == GNL_SUCCESS)
 	{
 		if (is_room(line))
 			read_room(mdata, line, &cmd_type);
@@ -76,7 +65,7 @@ void	get_links(t_mapdata *mdata)
 {
 	char	*line;
 
-	while (ft_get_next_line(fd, &line) == GNL_SUCCESS)
+	while (ft_get_next_line(STDIN_FILENO, &line) == GNL_SUCCESS)
 	{
 		if (is_link(line))
 			read_link(mdata, line);
@@ -88,7 +77,6 @@ void	get_links(t_mapdata *mdata)
 
 void	read_map(t_mapdata *mdata)
 {
-	//fd = open("../misc/map9",O_RDONLY);
 	get_ants_num(mdata);
 	get_nodes(mdata);
 	get_links(mdata);

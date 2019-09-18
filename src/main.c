@@ -27,7 +27,7 @@ void	free_mdata(t_mapdata *data)
 	free(data->end);
 }
 
-int	main(void)
+int		main(void)
 {
 	t_mapdata	mdata;
 

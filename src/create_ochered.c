@@ -12,22 +12,20 @@
 
 #include "lemin.h"
 
-void				b(t_way **ochered, t_connection *temp, t_v *node)
+void		b(t_way **ochered, t_connection *temp, t_v *node)
 {
-	t_way			*ochered1;
-	t_way			*ochered2;
+	t_way	*ochered1;
+	t_way	*ochered2;
 
 	ochered2 = (t_way*)malloc(sizeof(t_way));
+	ft_bzero(ochered2, sizeof(t_way));
 	ochered1 = *ochered;
 	while (ochered1->next != NULL)
 		ochered1 = ochered1->next;
 	ochered2->sosed = temp->bonds;
 	if (check_ocher(ochered2, *ochered))
 	{
-		ochered2->next = NULL;
 		ochered2->prev = node;
-		ochered2->status = 0;
-		ochered2->nomer_ant = 0;
 		ochered2->revnext = ochered1;
 		ochered1->next = ochered2;
 	}
@@ -35,9 +33,9 @@ void				b(t_way **ochered, t_connection *temp, t_v *node)
 		free(ochered2);
 }
 
-t_way				*poisk_node_v_ochered(t_way **ochered, t_v *node)
+t_way		*poisk_node_v_ochered(t_way **ochered, t_v *node)
 {
-	t_way			*ptr;
+	t_way	*ptr;
 
 	ptr = *ochered;
 	while (ptr->sosed != node && ptr)
@@ -45,7 +43,7 @@ t_way				*poisk_node_v_ochered(t_way **ochered, t_v *node)
 	return (ptr);
 }
 
-int					one_from(t_way *ptr, t_v *node, t_way **ochered)
+int			one_from(t_way *ptr, t_v *node, t_way **ochered)
 {
 	t_connection	*temp;
 
@@ -68,7 +66,7 @@ int					one_from(t_way *ptr, t_v *node, t_way **ochered)
 	return (0);
 }
 
-void				doo1(t_connection *temp, t_way **oc, t_v *node, t_flag *fl)
+void		doo1(t_connection *temp, t_way **oc, t_v *node, t_flag *fl)
 {
 	temp = node->knot;
 	if (node->vizit == 2)
@@ -89,7 +87,7 @@ void				doo1(t_connection *temp, t_way **oc, t_v *node, t_flag *fl)
 	}
 }
 
-void				doo(t_v **hashtab, char *start, t_way **ochered, t_flag *fl)
+void		doo(t_v **hashtab, char *start, t_way **ochered, t_flag *fl)
 {
 	t_connection	*temp;
 	t_v				*node;

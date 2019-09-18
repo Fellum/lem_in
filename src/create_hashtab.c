@@ -52,19 +52,11 @@ void		hashtab_add(t_v **hashtab, char *key, int value, int n)
 	node->value = value;
 	if (hashtab[index] == NULL)
 	{
-		node->next = NULL;
-		node->knot = NULL;
-		node->vizit = 0;
-		node->smezh_rebro = 0;
 		hashtab[index] = node;
 	}
 	else
 	{
 		temp = hashtab[index];
-		node->next = NULL;
-		node->knot = NULL;
-		node->vizit = 0;
-		node->smezh_rebro = 0;
 		while (temp->next != NULL)
 			temp = temp->next;
 		temp->next = node;

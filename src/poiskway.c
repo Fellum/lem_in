@@ -125,6 +125,8 @@ void		ft_multyway(t_v **hashtab, char *start, char *end, t_flag *fl)
 	t_way		*rebra;
 
 	map2 = create_smal(hashtab, start, end, fl);
+	if (map2 == NULL)
+		raise_error(6);
 	map = create_map(hashtab, start, end, fl);
 	rebra = poisk_vershin_s_indeksom_2(hashtab, fl);
 	podschet_reber(rebra, map, fl);

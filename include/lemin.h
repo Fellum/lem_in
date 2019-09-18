@@ -56,13 +56,13 @@ typedef struct	s_connection
 
 typedef struct	s_v
 {
-	char		*key;
-	int			value;
-	int			vizit;
-	int smezh_rebro;
-	struct s_connection	*knot; // указатель на ноду с которой связь
-	struct s_v	*next;
-	int is_node_one;
+	char			*key;
+	int				value;
+	int				vizit;
+	int 			smezh_rebro;
+	t_connection	*knot; // указатель на ноду с которой связь
+	struct s_v		*next;
+	int 			is_node_one;
 }				t_v;
 
 typedef struct	s_way
@@ -119,6 +119,7 @@ void			sortirivka_way(t_allway *map);
 void			count_way(t_allway *map);
 void			count_raznica(t_allway *map);
 
+int				check_for_double_con(t_v *n1, t_v *n2);
 
 
 void poisk_vershin1(t_way **temp, t_v *node);

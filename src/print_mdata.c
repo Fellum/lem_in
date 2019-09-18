@@ -25,7 +25,9 @@ void	print_mdata(t_mapdata *data)
 	cur = data->nodes->begin;
 	while (cur)
 	{
-		ft_printf("%s\n", cur->content);
+		if (ft_strcmp(cur->content, data->start) != 0 &&
+			ft_strcmp(cur->content, data->end) != 0)
+			ft_printf("%s\n", cur->content);
 		cur = cur->next;
 	}
 	cur = data->links->begin;

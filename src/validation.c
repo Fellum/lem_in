@@ -79,6 +79,8 @@ void	read_map(t_mapdata *mdata)
 {
 	get_ants_num(mdata);
 	get_nodes(mdata);
+	if (!mdata->end || !mdata->start)
+		raise_error(4);
 	get_links(mdata);
 	print_mdata(mdata);
 }

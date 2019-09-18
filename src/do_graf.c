@@ -41,7 +41,6 @@ void	copydominus(t_flag *fl, char *str)
 
 	fl->c = 0;
 	i = 0;
-	printf("%s\n\n", str);
 	while (str[i] != '-')
 	{
 		fl->temp[i] = str[i];
@@ -107,11 +106,10 @@ void	doconnect(t_v **hashtab, t_flag *fl, t_mapdata *p)
 		copyposleminus(fl, cur->content);
 		node = hashtab_lookup(hashtab, fl->temp, fl->hash_nbr);
 		node1 = hashtab_lookup(hashtab, fl->temp1, fl->hash_nbr);
-		if (node == NULL || node1 == NULL)
-		{
-			ft_putstr("no room in connect two V \n");
-			exit(0);
-		}
+		if (node == node1 || node == NULL || node1 == NULL)
+			raise_error(6);
+		if (check_for_double_con(node, node1))
+			raise_error(7);
 		list_with_connect(node, node1);
 		list_with_connect(node1, node);
 		free(cur->content);
